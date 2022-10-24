@@ -4,6 +4,10 @@
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; This function allows the creation of groups of units that will spawn when a dummy unit is recruited. Lots of parameters
+; are included, such as the likelyhood of a certain unit within a pool spawning, the number of units that spawn, chances of
+; different xp levels, and it also allows different unit pools for different regions.
+
 ; Starts with random_unit_group_from_unit
 random_unit_group_from_unit
 

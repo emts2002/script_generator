@@ -4,6 +4,8 @@
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; This function allows factions or groups of factions to have a limited number of units of given types that can be recruited.
+
 ; Starts with unit_pool_limited_factionwide
 unit_pool_limited_factionwide
 

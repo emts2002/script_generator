@@ -1,0 +1,16 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;  more_turns_per_year
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; This function allows the game to have more than 2 turns per year. All turns in a year but the last one are summer, since
+; characters age in winter (meaning having 2 winter turns in a year would make characters age 2 years per year)
+
+; Has the line
+more_turns_per_year
+
+; followed by the number of turns per year (minimum 3)
+4
+
+; Having multiple of these entries will result in only the last one working.

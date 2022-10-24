@@ -87,5 +87,7 @@ limit 10
 factions romans_scipii romans_brutii romans_julii
 limit 20
 
+more_turns_per_year
+4
 
 end

@@ -1,4 +1,15 @@
 script
+	declare_persistent_counter turn_number
+	monitor_event	NewTurnStart TrueCondition
+		inc_counter turn_number 1
+		if	I_CompareCounter turn_number > 0
+			inc_counter turn_number -4
+		end_if
+		if	not I_CompareCounter turn_number = -1
+			&& not I_CompareCounter turn_number = 0
+			console_command season summer
+		end_if
+	end_monitor
 	for_each	settlement in faction "romans_julii"
 		add_hidden_resource local can_recruit_1
 	end_for

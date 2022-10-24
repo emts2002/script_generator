@@ -4,6 +4,10 @@
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; This function allows the game to have given units be recruitable only when their pool in a given region is not exhausted,
+; Parameters include chance of replenishing the pool, number of starting and maximum units allowed in the pool in any
+; given time, regions which are affected.
+
 ; If one of these is used, you'll need a third file to give to the program that will have some instructions at the end which you need to follow to make it work.
 ; Starts with limited_recruitment_unit_pool
 limited_recruitment_unit_pool

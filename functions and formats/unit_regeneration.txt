@@ -4,6 +4,10 @@
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; This function allows given units to regenerate a percentage of their men when they end the turn in a settlement with
+; given resources or buildings (or both). The range of % they will regenerate is inputted, as well as the chance of them
+; actually regenerating.
+
 ; Starts with unit_regeneration
 unit_regeneration
 
