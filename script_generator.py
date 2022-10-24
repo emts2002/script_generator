@@ -329,6 +329,7 @@ dummy_unit_list = []
 unit_regeneration_list = []
 limited_recruitment_unit_pool_list = []
 unit_pool_limited_factionwide_list = []
+turns_per_year = ""
 
 def nextlinestartswith(line, l):
     for i in l:
@@ -336,7 +337,7 @@ def nextlinestartswith(line, l):
             return True
     return False
 
-function_list = ["random_unit_group_from_unit", "unit_regeneration", "limited_recruitment_unit_pool", "unit_pool_limited_factionwide", "end"]
+function_list = ["random_unit_group_from_unit", "unit_regeneration", "limited_recruitment_unit_pool", "unit_pool_limited_factionwide", "more_turns_per_year", "end"]
 
 while nextline != "end":
     if nextline.startswith("random_unit_group_from_unit"):
@@ -379,11 +380,27 @@ while nextline != "end":
             nextline = ilines[nextlineindex]
         lines.append("end")
         unit_pool_limited_factionwide(lines, unit_pool_limited_factionwide_list)
+    elif nextline.startswith("more_turns_per_year"):
+        nextlineindex += 1
+        nextline = ilines[nextlineindex]
+        turns_per_year = nextline
+        nextlineindex += 1
+        nextline = ilines[nextlineindex]
     if nextline == "":
         nextlineindex += 1
         nextline = ilines[nextlineindex]
         
 print("script", file = ofile)
+
+if turns_per_year != "":
+    print("\tdeclare_persistent_counter turn_number", file = ofile)
+    print("\tmonitor_event\tNewTurnStart TrueCondition\n\t\tinc_counter turn_number 1", file = ofile)
+    print("\t\tif\tI_CompareCounter turn_number > 0", file = ofile)
+    print("\t\t\tinc_counter turn_number -"+turns_per_year+"\n\t\tend_if", file = ofile)
+    print("\t\tif\tnot I_CompareCounter turn_number = -1", file = ofile)
+    print("\t\t\t&& not I_CompareCounter turn_number = 0", file = ofile)
+    print("\t\t\tconsole_command season summer\n\t\tend_if\n\tend_monitor", file = ofile)
+    
 for i in unit_pool_limited_factionwide_list:
     i.printtofile1(ofile)
 
