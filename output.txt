@@ -1,0 +1,1440 @@
+script
+	for_each	settlement in faction "romans_julii"
+		add_hidden_resource local can_recruit_1
+	end_for
+	for_each	settlement in faction "romans_brutii"
+		add_hidden_resource local can_recruit_1
+	end_for
+	declare_persistent_counter premarian_romans_julii
+	set_counter premarian_romans_julii 0
+	for_each	settlement in faction "romans_scipii"
+		add_hidden_resource local can_recruit_1
+	end_for
+	declare_persistent_counter premarian_romans_scipii
+	set_counter premarian_romans_scipii 0
+	for_each	settlement in faction "romans_senate"
+		add_hidden_resource local can_recruit_2
+	end_for
+	declare_persistent_counter postmarian_romans_senate
+	set_counter postmarian_romans_senate 0
+	for_each	settlement in faction "romans_scipii"
+		add_hidden_resource local can_recruit_2
+	end_for
+	for_each	settlement in faction "romans_brutii"
+		add_hidden_resource local can_recruit_2
+	end_for
+	for_each	settlement in faction "romans_julii"
+		add_hidden_resource local can_recruit_2
+	end_for
+	declare_persistent_counter postmarian_romans_scipii
+	set_counter postmarian_romans_scipii 0
+	add_hidden_resource Latium premarian_recruitment
+	add_hidden_resource Latium premarian_available
+	add_hidden_resource Etruria premarian_recruitment
+	add_hidden_resource Etruria premarian_available
+	for_each	settlement in world
+		if	HasReesource premarian_recruitment
+			declare_counter a
+			set_counter a 3
+			store_counter a settlement premarian_pool
+		end_if
+	end_for
+	for_each	settlement in world
+		declare_counter a
+		set_counter a 1
+		store_counter a settlement triarii_pool
+		add_hidden_resource local triarii_available
+	end_for
+	for_each	settlement in world
+		declare_counter local_region_number0
+		if	SettlementName Rome
+			|| SettlementName Arretium
+			|| SettlementName Ariminum
+			set_counter local_region_number0 1
+		end_if
+		if	SettlementName Tarentum
+			|| SettlementName Capua
+			|| SettlementName Croton
+			set_counter local_region_number0 2
+		end_if
+		if	SettlementName Patavium
+			|| SettlementName Mediolanium
+			set_counter local_region_number0 3
+		end_if
+		store_counter local_region_number0 settlement l_region_number0
+	end_for
+	for_each	settlement in world
+		declare_counter local_region_number1
+		if	SettlementName Rome
+			|| SettlementName Arretium
+			|| SettlementName Ariminum
+			set_counter local_region_number1 1
+		end_if
+		if	SettlementName Tarentum
+			|| SettlementName Capua
+			|| SettlementName Croton
+			set_counter local_region_number1 2
+		end_if
+		if	SettlementName Patavium
+			|| SettlementName Mediolanium
+			set_counter local_region_number1 3
+		end_if
+		store_counter local_region_number1 settlement l_region_number1
+	end_for
+	monitor_event	UnitTrained UnitType roman premarian
+		console_command destroy_unit local_settlement "roman premarian" 1
+		declare_counter region_id
+		retrieve_counter l_region_number0 settlement region_id
+		if	I_CompareCounter region_id = 1
+			declare_counter unit_n
+			set_counter unit_n 3
+			while_not	I_CompareCounter unit_n <= 0
+				declare_counter chance_taken
+				set_counter chance_taken 0
+				if	RandomPercent <= 40.0
+					&& I_CompareCounter unit_n >= 1
+					&& I_CompareCounter chance_taken = 0
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman hastati" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+				if	RandomPercent <= 50.0
+					&& I_CompareCounter unit_n >= 1
+					&& I_CompareCounter chance_taken = 0
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman princeps" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+				if	I_CompareCounter chance_taken = 0
+					&& I_CompareCounter unit_n >= 1
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman triarii" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+			end_while
+		end_if
+		if	I_CompareCounter region_id = 2
+			declare_counter unit_n
+			set_counter unit_n 5
+			while_not	I_CompareCounter unit_n <= 0
+				declare_counter chance_taken
+				set_counter chance_taken 0
+				if	RandomPercent <= 60.0
+					&& I_CompareCounter unit_n >= 1
+					&& I_CompareCounter chance_taken = 0
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman velite" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+				if	I_CompareCounter chance_taken = 0
+					&& I_CompareCounter unit_n >= 2
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -2
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+			end_while
+		end_if
+		if	I_CompareCounter region_id = 3
+			declare_counter unit_n
+			set_counter unit_n 2
+			while_not	I_CompareCounter unit_n <= 0
+				declare_counter chance_taken
+				set_counter chance_taken 0
+				if	I_CompareCounter chance_taken = 0
+					&& I_CompareCounter unit_n >= 1
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 1 0 0
+					end_if
+					if	RandomPercent <= 60.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 2 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman equites" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -15
+				end_if
+			end_while
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman postmarian
+		console_command destroy_unit local_settlement "roman postmarian" 1
+		declare_counter region_id
+		retrieve_counter l_region_number1 settlement region_id
+		if	I_CompareCounter region_id = 1
+			declare_counter unit_n
+			set_counter unit_n 6
+			while_not	I_CompareCounter unit_n <= 0
+				declare_counter chance_taken
+				set_counter chance_taken 0
+				if	RandomPercent <= 40.0
+					&& I_CompareCounter unit_n >= 1
+					&& I_CompareCounter chance_taken = 0
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort i" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+				if	RandomPercent <= 50.0
+					&& I_CompareCounter unit_n >= 2
+					&& I_CompareCounter chance_taken = 0
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -2
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman legionary cohort ii" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+				if	I_CompareCounter chance_taken = 0
+					&& I_CompareCounter unit_n >= 3
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -3
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman praetorian cohort i" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+			end_while
+		end_if
+		if	I_CompareCounter region_id = 2
+			declare_counter unit_n
+			set_counter unit_n 3
+			while_not	I_CompareCounter unit_n <= 0
+				declare_counter chance_taken
+				set_counter chance_taken 0
+				if	RandomPercent <= 60.0
+					&& I_CompareCounter unit_n >= 1
+					&& I_CompareCounter chance_taken = 0
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman light auxilia" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+				if	I_CompareCounter chance_taken = 0
+					&& I_CompareCounter unit_n >= 2
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -2
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 1 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 2 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman archer auxilia" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -20
+				end_if
+			end_while
+		end_if
+		if	I_CompareCounter region_id = 3
+			declare_counter unit_n
+			set_counter unit_n 1
+			while_not	I_CompareCounter unit_n <= 0
+				declare_counter chance_taken
+				set_counter chance_taken 0
+				if	RandomPercent <= 75.0
+					&& I_CompareCounter unit_n >= 1
+					&& I_CompareCounter chance_taken = 0
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 1 0 0
+					end_if
+					if	RandomPercent <= 60.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 2 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman medium cavalry" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -15
+				end_if
+				if	I_CompareCounter chance_taken = 0
+					&& I_CompareCounter unit_n >= 1
+					set_counter chance_taken 1
+					declare_counter exp_took
+					set_counter exp_took 0
+					inc_counter unit_n -1
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 0 0 0
+					end_if
+					if	RandomPercent <= 50.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 1 0 0
+					end_if
+					if	RandomPercent <= 60.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 2 0 0
+					end_if
+					if	RandomPercent <= 100.0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 3 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 4 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 5 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 6 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 7 0 0
+					end_if
+					if	RandomPercent < 0
+						&& I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 8 0 0
+					end_if
+					if	I_CompareCounter exp_took = 0
+						set_counter exp_took 1
+						console_command create_unit local_settlement "roman heavy cavalry" 1 9 0 0
+					end_if
+					console_command add_population local_settlement -15
+				end_if
+			end_while
+		end_if
+	end_monitor
+	monitor_event FactionTurnEnd TrueCondition
+		if	FactionType romans_julii
+			for_each	settlement in faction "romans_julii"
+				if	SettlementBuildingExists >= city_barracks
+					for_each	unit in settlement
+						if	UnitType roman hastati
+							&& RandomPercent < 90
+							declare_counter random_chance
+							set_counter random_chance 0
+							if	RandomPercent <= 20
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 10 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 25
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 15 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 33
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 20 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 50
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 25 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 100
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 30 80 "roman hastati" 1 "soldier_count"
+							end_if
+						end_if
+					end_for
+				end_if
+			end_for
+		end_if
+		if	FactionType romans_brutii
+			for_each	settlement in faction "romans_brutii"
+				if	SettlementBuildingExists >= city_barracks
+					for_each	unit in settlement
+						if	UnitType roman hastati
+							&& RandomPercent < 90
+							declare_counter random_chance
+							set_counter random_chance 0
+							if	RandomPercent <= 20
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 10 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 25
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 15 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 33
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 20 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 50
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 25 80 "roman hastati" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 100
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 30 80 "roman hastati" 1 "soldier_count"
+							end_if
+						end_if
+					end_for
+				end_if
+			end_for
+		end_if
+	end_monitor
+	monitor_event FactionTurnEnd TrueCondition
+		if	FactionType romans_brutii
+			for_each	settlement in faction "romans_brutii"
+				if	HasResource >= rome
+					&& HasResource >= gold
+					for_each	unit in settlement
+						if	UnitType roman princeps
+							&& RandomPercent < 50
+							declare_counter random_chance
+							set_counter random_chance 0
+							if	RandomPercent <= 20
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 8 80 "roman princeps" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 25
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 11 80 "roman princeps" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 33
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 14 80 "roman princeps" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 50
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 17 80 "roman princeps" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 100
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 20 80 "roman princeps" 1 "soldier_count"
+							end_if
+						end_if
+					end_for
+				end_if
+			end_for
+		end_if
+	end_monitor
+	monitor_event FactionTurnEnd TrueCondition
+		if	FactionType romans_julii
+			for_each	settlement in faction "romans_julii"
+				if	SettlementBuildingExists >= city_barracks
+					&& SettlementBuildingExists >= foundry
+					&& HasResource >= rome
+					&& HasResource >= gold
+					for_each	unit in settlement
+						if	UnitType roman triarii
+							&& RandomPercent < 30
+							declare_counter random_chance
+							set_counter random_chance 0
+							if	RandomPercent <= 25
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 4 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 33
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 6 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 50
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 8 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 100
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 10 80 "roman triarii" 1 "soldier_count"
+							end_if
+						end_if
+					end_for
+				end_if
+			end_for
+		end_if
+		if	FactionType romans_brutii
+			for_each	settlement in faction "romans_brutii"
+				if	SettlementBuildingExists >= city_barracks
+					&& SettlementBuildingExists >= foundry
+					&& HasResource >= rome
+					&& HasResource >= gold
+					for_each	unit in settlement
+						if	UnitType roman triarii
+							&& RandomPercent < 30
+							declare_counter random_chance
+							set_counter random_chance 0
+							if	RandomPercent <= 25
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 4 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 33
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 6 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 50
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 8 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 100
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 10 80 "roman triarii" 1 "soldier_count"
+							end_if
+						end_if
+					end_for
+				end_if
+			end_for
+		end_if
+		if	FactionType romans_scipii
+			for_each	settlement in faction "romans_scipii"
+				if	SettlementBuildingExists >= city_barracks
+					&& SettlementBuildingExists >= foundry
+					&& HasResource >= rome
+					&& HasResource >= gold
+					for_each	unit in settlement
+						if	UnitType roman triarii
+							&& RandomPercent < 30
+							declare_counter random_chance
+							set_counter random_chance 0
+							if	RandomPercent <= 25
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 4 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 33
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 6 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 50
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 8 80 "roman triarii" 1 "soldier_count"
+							end_if
+							if	RandomPercent <= 100
+								&& I_CompareCounter random_chance = 0
+								set_counter random_chance 1
+								console_command add_soldiers local_settlement 10 80 "roman triarii" 1 "soldier_count"
+							end_if
+						end_if
+					end_for
+				end_if
+			end_for
+		end_if
+	end_monitor
+	monitor_Event	NewTurnStart TrueCondition
+		for_each	settlement in world
+			if	HasResource premarian_recruitment
+				declare_counter pool
+				retrieve_counter premarian_pool settlement pool
+				if	I_CompareCounter pool < 5
+					&& RandomPercent <= 25
+					inc_counter pool 1
+				end_if
+				if	I_CompareCounter pool > 0
+					&& not HasResource premarian_available
+					add_hidden_resource local premarian_available
+				end_if
+			end_if
+		end_for
+	end_monitor
+	monitor_event	UnitTrained UnitType roman hastati
+		declare_counter pool
+		retrieve_counter premarian_pool settlement pool
+		if	I_CompareCounter pool = 0
+			console_command destroy_unit local_settlement "roman hastati" 1 "soldier_count"
+		end_if
+		if	I_CompareCounter pool > 0
+			inc_counter pool -1
+			if	I_CompareCounter pool < 1
+				remove_hidden_resource local premarian_available
+			end_if
+			store_counter pool settlement premarian_pool
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman principes
+		declare_counter pool
+		retrieve_counter premarian_pool settlement pool
+		if	I_CompareCounter pool = 0
+			console_command destroy_unit local_settlement "roman principes" 1 "soldier_count"
+		end_if
+		if	I_CompareCounter pool > 0
+			inc_counter pool -1
+			if	I_CompareCounter pool < 1
+				remove_hidden_resource local premarian_available
+			end_if
+			store_counter pool settlement premarian_pool
+		end_if
+	end_monitor
+	monitor_Event	NewTurnStart TrueCondition
+		for_each	settlement in world
+			declare_counter pool
+			retrieve_counter triarii_pool settlement pool
+			if	I_CompareCounter pool < 3
+				&& RandomPercent <= 10
+				inc_counter pool 1
+			end_if
+			if	I_CompareCounter pool > 0
+				&& not HasResource triarii_available
+				add_hidden_resource local triarii_available
+			end_if
+		end_for
+	end_monitor
+	monitor_event	UnitTrained UnitType roman triarii
+		declare_counter pool
+		retrieve_counter triarii_pool settlement pool
+		if	I_CompareCounter pool = 0
+			console_command destroy_unit local_settlement "roman triarii" 1 "soldier_count"
+		end_if
+		if	I_CompareCounter pool > 0
+			inc_counter pool -1
+			if	I_CompareCounter pool < 1
+				remove_hidden_resource local triarii_available
+			end_if
+			store_counter pool settlement triarii_pool
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_hastati
+		&& FactionType romans_julii
+		if	I_CompareCounter premarian_romans_julii = 10
+			console_command destroy_unit local_settlement "roman_hastati" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter premarian_romans_julii < 10
+			inc_counter premarian_romans_julii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_principes
+		&& FactionType romans_julii
+		if	I_CompareCounter premarian_romans_julii = 10
+			console_command destroy_unit local_settlement "roman_principes" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter premarian_romans_julii < 10
+			inc_counter premarian_romans_julii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_hastati
+		&& FactionType romans_brutii
+		if	I_CompareCounter premarian_romans_julii = 10
+			console_command destroy_unit local_settlement "roman_hastati" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter premarian_romans_julii < 10
+			inc_counter premarian_romans_julii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_principes
+		&& FactionType romans_brutii
+		if	I_CompareCounter premarian_romans_julii = 10
+			console_command destroy_unit local_settlement "roman_principes" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter premarian_romans_julii < 10
+			inc_counter premarian_romans_julii 1
+		end_if
+	end_monitor
+	monitor_event	NewTurnStart TrueCondition
+		if	I_CompareCounter premarian_romans_julii < 10
+			for_each	settlement in faction "romans_julii"
+				add_hidden_resource local can_recruit_1
+			end_for
+			for_each	settlement in faction "romans_brutii"
+				add_hidden_resource local can_recruit_1
+			end_for
+		end_if
+		if	I_CompareCounter premarian_romans_julii >= 10
+			for_each	settlement in faction "romans_julii"
+				remove_hidden_resource local can_recruit_1
+			end_for
+			for_each	settlement in faction "romans_brutii"
+				remove_hidden_resource local can_recruit_1
+			end_for
+		end_if
+	end_monitor
+	monitor_event	GeneralCaptureSettlement TrueCondition
+		&& FactionType romans_julii
+		if	I_CompareCounter premarian_romans_julii < 10
+			add_hidden_resource local can_recruit_1
+		end_if
+		if	I_CompareCounter premarian_romans_julii >= 10
+			remove_hidden_resource local can_recruit_1
+		end_if
+	end_monitor
+	monitor_event	GeneralCaptureSettlement TrueCondition
+		&& FactionType romans_brutii
+		if	I_CompareCounter premarian_romans_julii < 10
+			add_hidden_resource local can_recruit_1
+		end_if
+		if	I_CompareCounter premarian_romans_julii >= 10
+			remove_hidden_resource local can_recruit_1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_hastati
+		&& FactionType romans_scipii
+		if	I_CompareCounter premarian_romans_scipii = 5
+			console_command destroy_unit local_settlement "roman_hastati" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter premarian_romans_scipii < 5
+			inc_counter premarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_principes
+		&& FactionType romans_scipii
+		if	I_CompareCounter premarian_romans_scipii = 5
+			console_command destroy_unit local_settlement "roman_principes" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter premarian_romans_scipii < 5
+			inc_counter premarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	NewTurnStart TrueCondition
+		if	I_CompareCounter premarian_romans_scipii < 5
+			for_each	settlement in faction "romans_scipii"
+				add_hidden_resource local can_recruit_1
+			end_for
+		end_if
+		if	I_CompareCounter premarian_romans_scipii >= 5
+			for_each	settlement in faction "romans_scipii"
+				remove_hidden_resource local can_recruit_1
+			end_for
+		end_if
+	end_monitor
+	monitor_event	GeneralCaptureSettlement TrueCondition
+		&& FactionType romans_scipii
+		if	I_CompareCounter premarian_romans_scipii < 5
+			add_hidden_resource local can_recruit_1
+		end_if
+		if	I_CompareCounter premarian_romans_scipii >= 5
+			remove_hidden_resource local can_recruit_1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_legionary
+		&& FactionType romans_senate
+		if	I_CompareCounter postmarian_romans_senate = 10
+			console_command destroy_unit local_settlement "roman_legionary" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_senate < 10
+			inc_counter postmarian_romans_senate 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_praetorian
+		&& FactionType romans_senate
+		if	I_CompareCounter postmarian_romans_senate = 10
+			console_command destroy_unit local_settlement "roman_praetorian" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_senate < 10
+			inc_counter postmarian_romans_senate 1
+		end_if
+	end_monitor
+	monitor_event	NewTurnStart TrueCondition
+		if	I_CompareCounter postmarian_romans_senate < 10
+			for_each	settlement in faction "romans_senate"
+				add_hidden_resource local can_recruit_2
+			end_for
+		end_if
+		if	I_CompareCounter postmarian_romans_senate >= 10
+			for_each	settlement in faction "romans_senate"
+				remove_hidden_resource local can_recruit_2
+			end_for
+		end_if
+	end_monitor
+	monitor_event	GeneralCaptureSettlement TrueCondition
+		&& FactionType romans_senate
+		if	I_CompareCounter postmarian_romans_senate < 10
+			add_hidden_resource local can_recruit_2
+		end_if
+		if	I_CompareCounter postmarian_romans_senate >= 10
+			remove_hidden_resource local can_recruit_2
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_legionary
+		&& FactionType romans_scipii
+		if	I_CompareCounter postmarian_romans_scipii = 20
+			console_command destroy_unit local_settlement "roman_legionary" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			inc_counter postmarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_praetorian
+		&& FactionType romans_scipii
+		if	I_CompareCounter postmarian_romans_scipii = 20
+			console_command destroy_unit local_settlement "roman_praetorian" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			inc_counter postmarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_legionary
+		&& FactionType romans_brutii
+		if	I_CompareCounter postmarian_romans_scipii = 20
+			console_command destroy_unit local_settlement "roman_legionary" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			inc_counter postmarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_praetorian
+		&& FactionType romans_brutii
+		if	I_CompareCounter postmarian_romans_scipii = 20
+			console_command destroy_unit local_settlement "roman_praetorian" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			inc_counter postmarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_legionary
+		&& FactionType romans_julii
+		if	I_CompareCounter postmarian_romans_scipii = 20
+			console_command destroy_unit local_settlement "roman_legionary" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			inc_counter postmarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	UnitTrained UnitType roman_praetorian
+		&& FactionType romans_julii
+		if	I_CompareCounter postmarian_romans_scipii = 20
+			console_command destroy_unit local_settlement "roman_praetorian" 1 "soldier_count
+		end_if"
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			inc_counter postmarian_romans_scipii 1
+		end_if
+	end_monitor
+	monitor_event	NewTurnStart TrueCondition
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			for_each	settlement in faction "romans_scipii"
+				add_hidden_resource local can_recruit_2
+			end_for
+			for_each	settlement in faction "romans_brutii"
+				add_hidden_resource local can_recruit_2
+			end_for
+			for_each	settlement in faction "romans_julii"
+				add_hidden_resource local can_recruit_2
+			end_for
+		end_if
+		if	I_CompareCounter postmarian_romans_scipii >= 20
+			for_each	settlement in faction "romans_scipii"
+				remove_hidden_resource local can_recruit_2
+			end_for
+			for_each	settlement in faction "romans_brutii"
+				remove_hidden_resource local can_recruit_2
+			end_for
+			for_each	settlement in faction "romans_julii"
+				remove_hidden_resource local can_recruit_2
+			end_for
+		end_if
+	end_monitor
+	monitor_event	GeneralCaptureSettlement TrueCondition
+		&& FactionType romans_scipii
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			add_hidden_resource local can_recruit_2
+		end_if
+		if	I_CompareCounter postmarian_romans_scipii >= 20
+			remove_hidden_resource local can_recruit_2
+		end_if
+	end_monitor
+	monitor_event	GeneralCaptureSettlement TrueCondition
+		&& FactionType romans_brutii
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			add_hidden_resource local can_recruit_2
+		end_if
+		if	I_CompareCounter postmarian_romans_scipii >= 20
+			remove_hidden_resource local can_recruit_2
+		end_if
+	end_monitor
+	monitor_event	GeneralCaptureSettlement TrueCondition
+		&& FactionType romans_julii
+		if	I_CompareCounter postmarian_romans_scipii < 20
+			add_hidden_resource local can_recruit_2
+		end_if
+		if	I_CompareCounter postmarian_romans_scipii >= 20
+			remove_hidden_resource local can_recruit_2
+		end_if
+	end_monitor
+end_script

@@ -1,0 +1,34 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;  limited_recruitment_unit_pool
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; If one of these is used, you'll need a third file to give to the program that will have some instructions at the end which you need to follow to make it work.
+; Starts with limited_recruitment_unit_pool
+limited_recruitment_unit_pool
+
+; Followed by the unique name of this pool
+pool premarian
+
+; Followed by a list of the units affected. Each unit is defined by its type name with its spaces replaced by underscores. (NOT the dictionary name)
+units roman_hastati roman_principes
+
+; Followed by a list of the regions (not settlements!) affected. "all" is a valid entry here
+regions Latium Etruria
+
+; And these three numbers, which represent the starting number of units available per region, the maximum number of units available at any given time per region, and the chance out
+; of 100 of 1 unit available being added to the pool at the start of each turn
+start_pool 3
+max_pool 5
+regeneration_chance 25
+
+
+; Here's another entry example
+limited_recruitment_unit_pool
+pool triarii
+units roman_triarii
+regions all
+start_pool 1
+max_pool 3
+regeneration_chance 10

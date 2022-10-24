@@ -1,0 +1,9 @@
+; Lines that start with ; are comments. However, only the ones that start with ; are comments, do not try to comment on functional lines.
+
+; To use the script, simply run it on a Python console, select your input file and then your output file.
+; If necessary, the generator will ask for an additional instructions file, in which it will tell you some basic instructions
+; to follow for certain aspects to work.
+; Note: the generated script will only work in Total War: Rome Remastered (not the original Rome: Total War)
+
+; The file must end with the following line:
+end

@@ -1,0 +1,39 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;  unit_pool_limited_factionwide
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Starts with unit_pool_limited_factionwide
+unit_pool_limited_factionwide
+
+; Followed by the name of the pool (doesn't really matter the name as long as it's not the same as another pool's)
+pool premarian
+
+; Followed by the list of units included (type name of the unit, NOT dictionary name!, with its spaces replaced by underscores)
+units roman_hastati roman_principes
+
+; Followed by a hidden resource necessary for its recruitment (mandatory, otherwise it won't work. If you don't have one just create a new one and put it in EDB. Must be different
+; from all other pools)
+hidden_resource can_recruit_1
+
+; Followed by entries of faction groups and the limits for each one. The limits apply to all factions in the group, not individually.
+; This means that in the first faction group, the Julii and the Brutii will collectively be able to recruit 10 units, not 10 each.
+factions romans_julii romans_brutii
+limit 10
+factions romans_scipii
+limit 5
+
+; The way this script works is it creates a counter per faction group, which is increased when a unit of such group is recruited. Once it reaches the limit, units can no longer be recruited.
+; The generated script doesn't have any trigger to make the counter go down again. However, if you were to set up such method to decrease the counter, the generated script will still work.
+
+; Here is one more entry example:
+
+unit_pool_limited_factionwide
+pool postmarian
+units roman_legionary roman_praetorian
+hidden_resource can_recruit_2
+factions romans_senate
+limit 10
+factions romans_scipii romans_brutii romans_julii
+limit 20

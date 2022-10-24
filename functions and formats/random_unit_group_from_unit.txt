@@ -1,0 +1,38 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;  random_unit_group_from_unit
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Starts with random_unit_group_from_unit
+random_unit_group_from_unit
+
+; Each dummy unit can have one or more pools of cities where the script will work.
+; Each entry should start with a unit line, with "unit" followed by the type name of the unit (NOT dictionary name!)
+unit roman premarian
+
+; Each pool is defined with a pool line, which contains the cities' names (NOT regions) that it affects.
+; This line is then followed by a set of lines (unlimited) in which the units that are able to spawn are defined.
+; The number at the end is the number of units that will be spawned (though units can be worth more than one unit is specified to later in their entry)
+; To clarify the way this works: it will spawn units while n > 0. n is set to the number which is indicated here, and each unit spawned will take away n1 points from n. n1 is specified per unit.
+pool Rome Arretium Ariminum 1
+
+; Each unit line should start with the type name of the unit with its spaces replaced by underscores. (again, NOT the dictionary name)
+; It is followed by numbers representing in the following order:
+; chance of recruitment | number of extra men to take from the settlement (on top of the dummy unit men. Number may be negative to add men to the settlement)
+; | chance of 0 exp | chance of 1 exp | ... | chance of 9 exp
+; The last number is n1 mentioned earlier in the pool section.
+; Note: it is assumed that all chances of recruitment within a pool have a total sum of 1, and the same goes for all the exp chances within a unit. Not doing this may cause trouble.
+roman_hastati 0.4 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+roman_princeps 0.3 20 0.5 0.25 0.25 0 0 0 0 0 0 0 2
+roman_triarii 0.3 20 0.5 0.25 0.25 0 0 0 0 0 0 0 3
+
+; Here are 2 other pool definitions, to serve as example
+
+pool Tarentum Capua Croton 3
+roman_velite 0.6 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+roman_archer 0.4 20 0.5 0.25 0.25 0 0 0 0 0 0 0 2
+
+pool Patavium Mediolanium 5
+roman_equites 1 15 0.5 0.25 0.15 0.1 0 0 0 0 0 0 2
+

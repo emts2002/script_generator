@@ -1,0 +1,91 @@
+random_unit_group_from_unit
+unit roman premarian
+pool Rome Arretium Ariminum 3
+roman_hastati 0.4 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+roman_princeps 0.3 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+roman_triarii 0.3 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+pool Tarentum Capua Croton 5
+roman_velite 0.6 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+roman_archer 0.4 20 0.5 0.25 0.25 0 0 0 0 0 0 0 2
+pool Patavium Mediolanium 2
+roman_equites 1 15 0.5 0.25 0.15 0.1 0 0 0 0 0 0 1
+
+random_unit_group_from_unit
+unit roman postmarian
+pool Rome Arretium Ariminum 6
+roman_legionary_cohort_i 0.4 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+roman_legionary_cohort_ii 0.3 20 0.5 0.25 0.25 0 0 0 0 0 0 0 2
+roman_praetorian_cohort_i 0.3 20 0.5 0.25 0.25 0 0 0 0 0 0 0 3
+pool Tarentum Capua Croton 3
+roman_light_auxilia 0.6 20 0.5 0.25 0.25 0 0 0 0 0 0 0 1
+roman_archer_auxilia 0.4 20 0.5 0.25 0.25 0 0 0 0 0 0 0 2
+pool Patavium Mediolanium 1
+roman_medium_cavalry 0.75 15 0.5 0.25 0.15 0.1 0 0 0 0 0 0 1
+roman_heavy_cavalry 0.25 15 0.5 0.25 0.15 0.1 0 0 0 0 0 0 1
+
+unit_regeneration
+roman hastati
+factions romans_julii romans_brutii
+condition_building city_barracks
+condition_resource 
+percentage_min 10
+percentage_max 30
+percentage_inc 5
+chance 90
+
+unit_regeneration
+roman princeps
+factions romans_brutii
+condition_building 
+condition_resource rome gold
+percentage_min 8
+percentage_max 20
+percentage_inc 3
+chance 50
+
+unit_regeneration
+roman triarii
+factions romans_julii romans_brutii romans_scipii
+condition_building city_barracks foundry
+condition_resource rome gold
+percentage_min 4
+percentage_max 10
+percentage_inc 2
+chance 30
+
+limited_recruitment_unit_pool
+pool premarian
+units roman_hastati roman_principes
+regions Latium Etruria
+start_pool 3
+max_pool 5
+regeneration_chance 25
+
+limited_recruitment_unit_pool
+pool triarii
+units roman_triarii
+regions all
+start_pool 1
+max_pool 3
+regeneration_chance 10
+
+unit_pool_limited_factionwide
+pool premarian
+units roman_hastati roman_principes
+hidden_resource can_recruit_1
+factions romans_julii romans_brutii
+limit 10
+factions romans_scipii
+limit 5
+
+unit_pool_limited_factionwide
+pool postmarian
+units roman_legionary roman_praetorian
+hidden_resource can_recruit_2
+factions romans_senate
+limit 10
+factions romans_scipii romans_brutii romans_julii
+limit 20
+
+
+end

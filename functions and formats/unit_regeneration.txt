@@ -1,0 +1,52 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;  unit_regeneration
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Starts with unit_regeneration
+unit_regeneration
+
+; The next line has the type name of the unit (NOT dictionary name!) 
+roman hastati
+
+; Next, there is the factions listed as such:
+factions romans_julii romans_brutii
+
+; These are the buildings that are needed in order for the unit to be able to regenerate. May be 0, but the line must still exist even if it doesn't have any specified building
+condition_building city_barracks foundry
+
+; These are the resources that are needed in order for the unit to be able to regenerate. May be 0, but the line must still exist even if it doesn't have any specified resource
+condition_resource rome gold
+
+; These numbers are the minimum and maximum percentage the unit can regenerate, followed by the step by which it can regenerate (here for example, it can regenerate either 10,
+; 15, 20, 25 or 30%)
+percentage_min 10
+percentage_max 30
+percentage_inc 5
+
+; This is the chance out of 100 that the unit will regenerate in any given turn if it ends on a settlement with the required conditions.
+chance 90
+
+; Here are 2 more example entries:
+
+unit_regeneration
+roman princeps
+factions romans_brutii
+condition_building 
+condition_resource rome gold
+percentage_min 8
+percentage_max 20
+percentage_inc 3
+chance 50
+
+unit_regeneration
+roman triarii
+factions romans_julii romans_brutii romans_scipii
+condition_building city_barracks foundry
+condition_resource rome gold
+percentage_min 4
+percentage_max 10
+percentage_inc 2
+chance 100
+

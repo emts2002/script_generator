@@ -1,0 +1,15 @@
+For each unit affected by limited_recruitment_unit_pool, it must be stated in export_descr_building.txt that it requires the hidden resource [pool_name]_available to be recruited.
+
+Copy these resource entries to your descr_sm_resources.txt file
+	"premarian_available":
+	{
+		"subtype": "hidden",
+	},
+	"premarian_recruitment":
+	{
+		"subtype": "hidden",
+	},
+	"triarii_available":
+	{
+		"subtype": "hidden",
+	},
